@@ -1,70 +1,54 @@
 package com.example.road_safety
 
 import android.content.Context
+import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import java.util.*
 import kotlin.math.sqrt
-
-class ShakeDetector(context: Context) : SensorEventListener {
-
-    private var mSensorManager: SensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-    private var mAccelerometer: Sensor? = null
-    private var mShakeListener: OnShakeListener? = null
-    private var mLastX: Float = 0.toFloat()
-    private var mLastY: Float = 0.toFloat()
-    private var mLastZ: Float = 0.toFloat()
-    private var mLastTime: Long = 0
-    private var mShakeThreshold: Float = 2.5f
-
-    interface OnShakeListener {
-        fun onShake(count: Int)
+class ShakeDetector : AppCompatActivity() {
+    private var sensorManager: SensorManager? = null
+    private var acceleration = 0f
+    private var currentAcceleration = 0f
+    private var lastAcceleration = 0f
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_shake_detector)
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        Objects.requireNonNull(sensorManager)!!.registerListener(sensorListener, sensorManager!!
+            .getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL)
+        acceleration = 10f
+        currentAcceleration = SensorManager.GRAVITY_EARTH
+        lastAcceleration = SensorManager.GRAVITY_EARTH
     }
-
-    fun setOnShakeListener(listener: OnShakeListener) {
-        mShakeListener = listener
-    }
-
-    fun start() {
-        mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-        mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL)
-    }
-
-    fun stop() {
-        mSensorManager.unregisterListener(this)
-    }
-
-    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        // Do nothing
-    }
-
-    override fun onSensorChanged(event: SensorEvent?) {
-        if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
-            val currentTime = System.currentTimeMillis()
-            val timeDiff = currentTime - mLastTime
-
-            if (timeDiff > 100) {
-                mLastTime = currentTime
-
-                val x = event.values[0]
-                val y = event.values[1]
-                val z = event.values[2]
-
-                val acceleration = sqrt((x * x + y * y + z * z).toDouble()).toFloat()
-                val delta = acceleration - mShakeThreshold
-
-                if (delta > 0) {
-                    val speed = delta / timeDiff * 10000
-                    if (speed > 800) {
-                        mShakeListener?.onShake(1)
-                    }
-                }
-
-                mLastX = x
-                mLastY = y
-                mLastZ = z
+    private val sensorListener: SensorEventListener = object : SensorEventListener {
+        override fun onSensorChanged(event: SensorEvent) {
+            val x = event.values[0]
+            val y = event.values[1]
+            val z = event.values[2]
+            lastAcceleration = currentAcceleration
+            currentAcceleration = sqrt((x * x + y * y + z * z).toDouble()).toFloat()
+            val delta: Float = currentAcceleration - lastAcceleration
+            acceleration = acceleration * 0.9f + delta
+            if (acceleration > 40) {
+                val intent =Intent(baseContext, Alert_yesOrNo::class.java)
+                startActivity(intent)
             }
         }
+        override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
+    }
+    override fun onResume() {
+        sensorManager?.registerListener(sensorListener, sensorManager!!.getDefaultSensor(
+            Sensor .TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL
+        )
+        super.onResume()
+    }
+    override fun onPause() {
+        sensorManager!!.unregisterListener(sensorListener)
+        super.onPause()
     }
 }

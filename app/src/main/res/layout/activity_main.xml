@@ -20,7 +20,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/record"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttons"
@@ -30,7 +30,7 @@
                 android:textColor="@color/white" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/report"
                 android:layout_width="match_parent"
                 android:padding="30px"
                 android:layout_margin="@dimen/cardview_default_radius"
@@ -40,7 +40,7 @@
                 android:text="write a Report" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/needHelp"
                 android:layout_margin="@dimen/cardview_default_radius"
                 android:layout_width="match_parent"
                 android:padding="30px"
