@@ -33,7 +33,7 @@ class AuthActivity : AppCompatActivity() {
 
         authBtn = findViewById(R.id.auth_btn)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(getString(R.string.default_web_client_ids))
             .requestEmail()
             .build()
 
