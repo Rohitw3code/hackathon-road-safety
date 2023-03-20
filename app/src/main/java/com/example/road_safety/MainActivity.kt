@@ -9,8 +9,6 @@ import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.ktx.initialize
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recordBtn:Button
@@ -25,6 +23,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        getGPSLocation(this) { location ->
+            if (location != null) {
+                // Use the location object
+                val latitude = location.latitude
+                val longitude = location.longitude
+                System.out.print(latitude)
+                System.out.print(longitude)
+                // ...
+            } else {
+                // Handle null result or error
+                // ...
+            }
+        }
+
         recordBtn = findViewById(R.id.record) as Button
         reportBtn = findViewById(R.id.report) as Button
         helpBtn = findViewById(R.id.needHelp) as Button
@@ -33,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         // set on-click listener
         recordBtn.setOnClickListener {
-            val intent = Intent(this, ShakeDetector::class.java)
+            val intent = Intent(this, ShakeDetector_Activity::class.java)
             startActivity(intent)
         }
 
@@ -50,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 //                .cameraOnly().crop().maxResultSize(400,400).start()
         }
         helpBtn.setOnClickListener {
-            val intent = Intent(this, Help::class.java)
+            val intent = Intent(this, Help_Activity::class.java)
             startActivity(intent)
         }
     }
