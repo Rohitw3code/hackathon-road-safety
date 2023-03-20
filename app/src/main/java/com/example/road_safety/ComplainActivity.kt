@@ -156,7 +156,7 @@ class ComplainActivity : AppCompatActivity() {
         )
 
         complainRef.document(id).set(hash).addOnCompleteListener {
-            Toast.makeText(baseContext, "done", Toast.LENGTH_SHORT).show()
+            Toast.makeText(baseContext, "Complaint registered", Toast.LENGTH_SHORT).show()
             startActivity(Intent(baseContext, MainActivity::class.java))
             finish()
             progressBar.visibility = View.GONE

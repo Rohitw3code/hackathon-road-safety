@@ -2,10 +2,8 @@ package com.example.road_safety
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var reportBtn:Button
     private lateinit var helpBtn:Button
     private lateinit var about:TextView
+    private lateinit var profile:ImageView
     private lateinit var firebaseAuth: FirebaseAuth
     private  var aboutClick:Boolean = false
 
@@ -39,13 +38,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        about.setOnClickListener{v->
-            if (aboutClick){
+        about.setOnClickListener { v ->
+            if (aboutClick) {
                 aboutClick = false
                 about.textSize = 22F
                 about.text = getString(R.string.about_english)
-            }
-            else{
+            } else {
                 aboutClick = true
                 about.textSize = 25F
                 about.text = getString(R.string.about_hindi)
@@ -55,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         recordBtn = findViewById(R.id.record) as Button
         reportBtn = findViewById(R.id.report) as Button
         helpBtn = findViewById(R.id.needHelp) as Button
+        profile = findViewById(R.id.Profile) as ImageView
 
         firebaseAuth = FirebaseAuth.getInstance()
         // set on-click listener
@@ -69,6 +68,10 @@ class MainActivity : AppCompatActivity() {
         }
         helpBtn.setOnClickListener {
             val intent = Intent(this, HelpActivity::class.java)
+            startActivity(intent)
+        }
+        profile.setOnClickListener {
+            val intent = Intent(this, profileActivity::class.java)
             startActivity(intent)
         }
     }
