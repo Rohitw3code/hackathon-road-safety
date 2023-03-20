@@ -57,7 +57,6 @@ class AuthActivity : AppCompatActivity() {
             finish()
         }
         authBtn.setOnClickListener { view: View? ->
-//            Toast.makeText(this, "Logging In", Toast.LENGTH_SHORT).show()
             signInGoogle()
         }
     }
