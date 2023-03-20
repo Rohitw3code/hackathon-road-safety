@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var about:TextView
     private val pickImage = 100
     private var imageUri: Uri? = null
+    private lateinit var profile:ImageView
     private lateinit var firebaseAuth: FirebaseAuth
     private  var aboutClick:Boolean = false
 
@@ -57,6 +58,7 @@ class MainActivity : AppCompatActivity() {
         recordBtn = findViewById(R.id.record) as Button
         reportBtn = findViewById(R.id.report) as Button
         helpBtn = findViewById(R.id.needHelp) as Button
+        profile = findViewById(R.id.Profile)
 
         firebaseAuth = FirebaseAuth.getInstance()
         // set on-click listener
@@ -64,6 +66,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ShakeDetectorActivity::class.java)
             startActivity(intent)
         }
+
+        profile.setOnClickListener {
+                val intent = Intent(this, profileActivity::class.java)
+                startActivity(intent)
+            }
+
 
         reportBtn.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
