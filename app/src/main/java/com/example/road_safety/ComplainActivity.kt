@@ -79,10 +79,6 @@ class ComplainActivity : AppCompatActivity() {
             finish()
         }
 
-
-
-
-
     }
 
 

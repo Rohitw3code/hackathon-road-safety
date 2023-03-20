@@ -24,8 +24,8 @@
                 app:title="Road Safety"/>
             <ImageView
                 android:id="@+id/logout_btn"
-                android:layout_width="35sp"
-                android:layout_height="45sp"
+                android:layout_width="25sp"
+                android:layout_height="53sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="10sp"
                 android:src="@drawable/baseline_logout_24"/>
@@ -36,56 +36,73 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:lottie_rawRes="@raw/car"
         app:lottie_loop="true"
         app:lottie_autoPlay="true"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteY="1dp">
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/AboutUs"
+            android:textAlignment="center"
+            android:layout_margin="60dp"
+            android:fontFamily="@font/RobotoMono"
+            android:textSize="70px"
+            android:text=" Welcome to appname \n यदि आप सड़क परिवहन प्राधिकरण से कोई शिकायत करना चाहते हैं तो आप सही जगह पर हैं"/>
 
         <LinearLayout
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="40px">
+            android:layout_margin="50dp"
+            tools:layout_editor_absoluteY="1dp">
 
-
-            <Button
-                android:id="@+id/report"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/buttons"
-                android:padding="30px"
-                android:text="make complaint"
-                android:textColor="@color/texts" />
+                android:orientation="vertical"
+                android:padding="40px">
 
-            <Button
-                android:id="@+id/record"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/buttons"
-                android:padding="30px"
-                android:text="Accident alert"
-                android:textColor="@color/texts" />
 
-            <Button
-                android:id="@+id/needHelp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/buttons"
-                android:padding="30px"
-                android:text="need Help ?"
-                android:textColor="@color/texts" />
+                <Button
+                    android:id="@+id/report"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/buttons"
+                    android:padding="30px"
+                    android:text="make complaint"
+                    android:textColor="@color/texts" />
+
+                <Button
+                    android:id="@+id/record"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/buttons"
+                    android:padding="30px"
+                    android:text="Accident alert"
+                    android:textColor="@color/texts" />
+
+                <Button
+                    android:id="@+id/needHelp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/buttons"
+                    android:padding="30px"
+                    android:text="need Help ?"
+                    android:textColor="@color/texts" />
+            </LinearLayout>
+
+
         </LinearLayout>
-
-
     </LinearLayout>
 </RelativeLayout>
