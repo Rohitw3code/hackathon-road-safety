@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
         // set on-click listener
         recordBtn.setOnClickListener {
-            val intent = Intent(this, ShakeDetector_Activity::class.java)
+            val intent = Intent(this, ShakeDetectorActivity::class.java)
             startActivity(intent)
         }
 
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
 //                .cameraOnly().crop().maxResultSize(400,400).start()
         }
         helpBtn.setOnClickListener {
-            val intent = Intent(this, Help_Activity::class.java)
+            val intent = Intent(this, HelpActivity::class.java)
             startActivity(intent)
         }
     }

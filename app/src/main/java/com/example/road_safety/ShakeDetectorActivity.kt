@@ -10,7 +10,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 import kotlin.math.sqrt
-class ShakeDetector_Activity : AppCompatActivity() {
+class ShakeDetectorActivity : AppCompatActivity() {
     private var sensorManager: SensorManager? = null
     private var acceleration = 0f
     private var currentAcceleration = 0f
@@ -35,7 +35,7 @@ class ShakeDetector_Activity : AppCompatActivity() {
             val delta: Float = currentAcceleration - lastAcceleration
             acceleration = acceleration * 0.9f + delta
             if (acceleration > 40) {
-                val intent = Intent(baseContext, Alert_yesOrNo::class.java)
+                val intent = Intent(baseContext, AccidentAlert::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 baseContext.startActivity(intent)
             }
