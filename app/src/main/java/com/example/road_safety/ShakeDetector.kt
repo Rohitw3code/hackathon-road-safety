@@ -52,3 +52,4 @@ class ShakeDetector : AppCompatActivity() {
         super.onPause()
     }
 }
+
