@@ -56,7 +56,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         reportBtn.setOnClickListener {
-            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            gallery.setType("image/* video/*")
             startActivityForResult(gallery, pickImage)
 //            ImagePicker.with(this)
 //                .cameraOnly().crop().maxResultSize(400,400).start()
