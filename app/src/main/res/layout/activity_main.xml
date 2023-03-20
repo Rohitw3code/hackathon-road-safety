@@ -13,41 +13,46 @@
         android:orientation="vertical"
         android:gravity="center"
         tools:layout_editor_absoluteY="1dp">
+
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:padding="40px"
             android:orientation="vertical">
 
+
+
             <Button
                 android:id="@+id/record"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/buttons"
-                android:layout_margin="@dimen/cardview_default_radius"
+                android:layout_margin="4dp"
                 android:padding="30px"
                 android:text="record a complain"
-                android:textColor="@color/white" />
+                android:textColor="@color/texts" />
 
             <Button
                 android:id="@+id/report"
                 android:layout_width="match_parent"
                 android:padding="30px"
-                android:layout_margin="@dimen/cardview_default_radius"
+                android:layout_margin="4dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/texts"
                 android:background="@drawable/buttons"
                 android:text="write a Report" />
 
             <Button
                 android:id="@+id/needHelp"
-                android:layout_margin="@dimen/cardview_default_radius"
+                android:layout_margin="4dp"
                 android:layout_width="match_parent"
                 android:padding="30px"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:textColor="@color/texts"
                 android:background="@drawable/buttons"
                 android:text="need Help ?" />
         </LinearLayout>
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

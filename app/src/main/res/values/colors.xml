@@ -9,8 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     #defined colors
-    <color name="background">#ffffff</color>
-    <color name="buttons">#9bd4e4</color>
-    <color name="navbar">#cadeef</color>
+    <color name="background">#ebeffa</color>
+    <color name="buttons">#9ee0fa</color>
+    <color name="navbar">#6ab5ef</color>
+    <color name="texts">#ebeffa</color>
 
 </resources>
