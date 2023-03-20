@@ -94,7 +94,7 @@ class ComplainActivity : AppCompatActivity() {
         // On success, download the file URL and display it
         uploadTask.addOnSuccessListener {
             // using glide library to display the image
-            storageRef.child("upload/$sd").downloadUrl.addOnSuccessListener {
+            storageRef.child("file/$sd").downloadUrl.addOnSuccessListener {
                 submitComplain(it.toString())
                 Log.e("Firebase", "download passed"+it)
             }.addOnFailureListener {
@@ -106,6 +106,8 @@ class ComplainActivity : AppCompatActivity() {
             progressBar.visibility = View.GONE
         }
     }
+
+//    com.google.firebase.storage.storageexception : object does not exist at location
     fun submitComplain(url:String){
         val id = System.currentTimeMillis().toString()
         var hash = hashMapOf(
