@@ -35,8 +35,9 @@ class ShakeDetector_Activity : AppCompatActivity() {
             val delta: Float = currentAcceleration - lastAcceleration
             acceleration = acceleration * 0.9f + delta
             if (acceleration > 40) {
-                val intent =Intent(baseContext, Alert_yesOrNo::class.java)
-                startActivity(intent)
+                val intent = Intent(baseContext, Alert_yesOrNo::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                baseContext.startActivity(intent)
             }
         }
         override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
