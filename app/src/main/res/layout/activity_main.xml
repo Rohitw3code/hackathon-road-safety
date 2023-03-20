@@ -19,18 +19,12 @@
             android:layout_height="wrap_content"
             android:padding="40px"
             android:orientation="vertical">
-
-
-
-            <Button
-                android:id="@+id/record"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/buttons"
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
                 android:layout_margin="4dp"
-                android:padding="30px"
-                android:text="record a complain"
-                android:textColor="@color/texts" />
+                android:paddingBottom="40dp"
+                android:src="@drawable/homepage"/>
 
             <Button
                 android:id="@+id/report"
@@ -40,7 +34,16 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/texts"
                 android:background="@drawable/buttons"
-                android:text="write a Report" />
+                android:text="make complaint" />
+            <Button
+                android:id="@+id/record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttons"
+                android:layout_margin="4dp"
+                android:padding="30px"
+                android:text="Accident alert"
+                android:textColor="@color/texts" />
 
             <Button
                 android:id="@+id/needHelp"
