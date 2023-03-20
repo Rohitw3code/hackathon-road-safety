@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.View
@@ -19,7 +20,6 @@ import java.net.URLConnection
 
 class ComplainActivity : AppCompatActivity() {
     private lateinit var img: ImageView
-    private lateinit var uri: String
     private lateinit var submitBtn: Button
     var db = Firebase.firestore
     private lateinit var firebaseAuth: FirebaseAuth
@@ -31,6 +31,9 @@ class ComplainActivity : AppCompatActivity() {
     private lateinit var toolbar: Toolbar
     private lateinit var progressBar: ProgressBar
     private lateinit var vid: VideoView
+    private lateinit var select:LinearLayout
+    private val pickImage = 100
+    private var imageUri: Uri? = null
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +46,14 @@ class ComplainActivity : AppCompatActivity() {
         address = findViewById(R.id.address_complain)
         toolbar = findViewById(R.id.toolbar_complain)
         progressBar = findViewById(R.id.progress_bar_complain)
+        select = findViewById(R.id.upload_image_video)
+
+
+        select.setOnClickListener{v->
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            gallery.setType("image/* video/*")
+            startActivityForResult(gallery, pickImage)
+        }
 
         setSupportActionBar(toolbar)
         var actionBar = supportActionBar
@@ -52,21 +63,7 @@ class ComplainActivity : AppCompatActivity() {
         }
         img = findViewById(R.id.image_complain)
         vid = findViewById(R.id.video_complain)
-        uri = intent.getStringExtra("uri").toString()
         submitBtn = findViewById(R.id.submit_complain)
-
-        checkUri(Uri.parse(uri))
-
-//        if (isImageFile(uri)){
-//            img.setImageURI(Uri.parse(uri))
-//            vid.visibility = View.GONE
-//            img.visibility = View.VISIBLE
-//        }
-//        if (isVideoFile(uri)){
-//            vid.setVideoURI(Uri.parse(uri))
-//            vid.visibility = View.VISIBLE
-//            img.visibility = View.GONE
-//        }
 
 
         submitBtn.setOnClickListener { v ->
@@ -81,14 +78,24 @@ class ComplainActivity : AppCompatActivity() {
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == pickImage) {
+            imageUri = data?.data
+            checkUri(Uri.parse(imageUri.toString()))
+        }
+    }
+
     fun checkUri(uri: Uri) {
         val mediaController = MediaController(this)
         mediaController.setAnchorView(vid)
         val mimeType = baseContext.contentResolver.getType(uri)
         if (mimeType != null && mimeType.startsWith("image")) {
+            vid.setVideoURI(null)
             img.setImageURI(uri)
             img.visibility = View.VISIBLE
         } else if (mimeType != null && mimeType.startsWith("video")) {
+            img.setImageURI(null)
             vid.visibility = View.VISIBLE
             vid.setMediaController(mediaController)
             vid.setVideoURI(uri)
@@ -113,11 +120,11 @@ class ComplainActivity : AppCompatActivity() {
 
     fun uploadImage() {
         progressBar.visibility = View.VISIBLE
-        val sd = getFileNameFromUri(applicationContext, Uri.parse(uri)!!)
+        val sd = getFileNameFromUri(applicationContext, Uri.parse(imageUri.toString())!!)
         var storageRef = Firebase.storage.reference;
         // Upload Task with upload to directory 'file'
         // and name of the file remains same
-        val uploadTask = storageRef.child("file/$sd").putFile(Uri.parse(uri))
+        val uploadTask = storageRef.child("file/$sd").putFile(Uri.parse(imageUri.toString()))
 
         // On success, download the file URL and display it
         uploadTask.addOnSuccessListener {

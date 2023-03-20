@@ -16,9 +16,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var reportBtn:Button
     private lateinit var helpBtn:Button
     private lateinit var about:TextView
-    private val pickImage = 100
-    private var imageUri: Uri? = null
-    private lateinit var profile:ImageView
     private lateinit var firebaseAuth: FirebaseAuth
     private  var aboutClick:Boolean = false
 
@@ -58,7 +55,6 @@ class MainActivity : AppCompatActivity() {
         recordBtn = findViewById(R.id.record) as Button
         reportBtn = findViewById(R.id.report) as Button
         helpBtn = findViewById(R.id.needHelp) as Button
-        profile = findViewById(R.id.Profile)
 
         firebaseAuth = FirebaseAuth.getInstance()
         // set on-click listener
@@ -67,32 +63,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        profile.setOnClickListener {
-                val intent = Intent(this, profileActivity::class.java)
-                startActivity(intent)
-            }
-
-
         reportBtn.setOnClickListener {
-            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            gallery.setType("image/* video/*")
-            startActivityForResult(gallery, pickImage)
-//            ImagePicker.with(this)
-//                .cameraOnly().crop().maxResultSize(400,400).start()
+            val intent = Intent(this, ComplainActivity::class.java)
+            startActivity(intent)
         }
         helpBtn.setOnClickListener {
             val intent = Intent(this, HelpActivity::class.java)
             startActivity(intent)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK && requestCode == pickImage) {
-            imageUri = data?.data
-            val cintent = Intent(baseContext,ComplainActivity::class.java)
-            cintent.putExtra("uri",imageUri.toString())
-            startActivity(cintent)
         }
     }
 }
