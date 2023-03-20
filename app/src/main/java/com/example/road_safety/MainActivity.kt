@@ -8,20 +8,25 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recordBtn:Button
     private lateinit var reportBtn:Button
     private lateinit var helpBtn:Button
+    private lateinit var about:TextView
     private val pickImage = 100
     private var imageUri: Uri? = null
     private lateinit var logout:ImageView
     private lateinit var firebaseAuth: FirebaseAuth
+    private  var aboutClick:Boolean = false
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        about = findViewById(R.id.about_us)
 
         getGPSLocation(this) { location ->
             if (location != null) {
@@ -34,6 +39,19 @@ class MainActivity : AppCompatActivity() {
             } else {
                 // Handle null result or error
                 // ...
+            }
+        }
+
+        about.setOnClickListener{v->
+            if (aboutClick){
+                aboutClick = false
+                about.textSize = 22F
+                about.text = getString(R.string.about_english)
+            }
+            else{
+                aboutClick = true
+                about.textSize = 25F
+                about.text = getString(R.string.about_hindi)
             }
         }
 
@@ -56,7 +74,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         reportBtn.setOnClickListener {
-            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            gallery.setType("image/* video/*")
             startActivityForResult(gallery, pickImage)
 //            ImagePicker.with(this)
 //                .cameraOnly().crop().maxResultSize(400,400).start()

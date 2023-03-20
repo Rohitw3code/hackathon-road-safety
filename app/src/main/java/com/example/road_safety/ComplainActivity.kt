@@ -9,30 +9,28 @@ import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import java.net.URLConnection
 
 class ComplainActivity : AppCompatActivity() {
-    private lateinit var img:ImageView
-    private lateinit var uri:String
-    private lateinit var submitBtn:Button
+    private lateinit var img: ImageView
+    private lateinit var uri: String
+    private lateinit var submitBtn: Button
     var db = Firebase.firestore
     private lateinit var firebaseAuth: FirebaseAuth
     var complainRef = db.collection("complain")
-    private lateinit var desc:EditText
-    private lateinit var state:EditText
-    private lateinit var region:EditText
-    private lateinit var address:EditText
+    private lateinit var desc: EditText
+    private lateinit var state: EditText
+    private lateinit var region: EditText
+    private lateinit var address: EditText
     private lateinit var toolbar: Toolbar
     private lateinit var progressBar: ProgressBar
+    private lateinit var vid: VideoView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,20 +51,50 @@ class ComplainActivity : AppCompatActivity() {
             actionBar.setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24)
         }
         img = findViewById(R.id.image_complain)
+        vid = findViewById(R.id.video_complain)
         uri = intent.getStringExtra("uri").toString()
-        img.setImageURI(Uri.parse(uri))
         submitBtn = findViewById(R.id.submit_complain)
 
+        checkUri(Uri.parse(uri))
 
-        submitBtn.setOnClickListener{v->
-            if (!desc.text.toString().isEmpty() and  !state.text.toString().isEmpty() and
-                !region.text.toString().isEmpty() and !address.text.toString().isEmpty()){
+//        if (isImageFile(uri)){
+//            img.setImageURI(Uri.parse(uri))
+//            vid.visibility = View.GONE
+//            img.visibility = View.VISIBLE
+//        }
+//        if (isVideoFile(uri)){
+//            vid.setVideoURI(Uri.parse(uri))
+//            vid.visibility = View.VISIBLE
+//            img.visibility = View.GONE
+//        }
+
+
+        submitBtn.setOnClickListener { v ->
+            if (!desc.text.toString().isEmpty() and !state.text.toString().isEmpty() and
+                !region.text.toString().isEmpty() and !address.text.toString().isEmpty()
+            ) {
                 uploadImage()
-            }else{
-                Toast.makeText(baseContext,"No Empty field is accepted",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(baseContext, "No Empty field is accepted", Toast.LENGTH_SHORT).show()
             }
         }
 
+    }
+
+    fun checkUri(uri: Uri) {
+        val mediaController = MediaController(this)
+        mediaController.setAnchorView(vid)
+        val mimeType = baseContext.contentResolver.getType(uri)
+        if (mimeType != null && mimeType.startsWith("image")) {
+            img.setImageURI(uri)
+            img.visibility = View.VISIBLE
+        } else if (mimeType != null && mimeType.startsWith("video")) {
+            vid.visibility = View.VISIBLE
+            vid.setMediaController(mediaController)
+            vid.setVideoURI(uri)
+            vid.requestFocus()
+            vid.start()
+        }
     }
 
 
@@ -83,7 +111,7 @@ class ComplainActivity : AppCompatActivity() {
         return fileName
     }
 
-    fun uploadImage(){
+    fun uploadImage() {
         progressBar.visibility = View.VISIBLE
         val sd = getFileNameFromUri(applicationContext, Uri.parse(uri)!!)
         var storageRef = Firebase.storage.reference;
@@ -96,19 +124,19 @@ class ComplainActivity : AppCompatActivity() {
             // using glide library to display the image
             storageRef.child("file/$sd").downloadUrl.addOnSuccessListener {
                 submitComplain(it.toString())
-                Log.e("Firebase", "download passed"+it)
+                Log.e("Firebase", "download passed" + it)
             }.addOnFailureListener {
-                Toast.makeText(baseContext,"Failed in downloading",Toast.LENGTH_SHORT).show()
+                Toast.makeText(baseContext, "Failed in downloading", Toast.LENGTH_SHORT).show()
                 progressBar.visibility = View.GONE
             }
-        }.addOnFailureListener {it->
-            Toast.makeText(baseContext,""+it,Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener { it ->
+            Toast.makeText(baseContext, "" + it, Toast.LENGTH_SHORT).show()
             progressBar.visibility = View.GONE
         }
     }
 
-//    com.google.firebase.storage.storageexception : object does not exist at location
-    fun submitComplain(url:String){
+    //    com.google.firebase.storage.storageexception : object does not exist at location
+    fun submitComplain(url: String) {
         val id = System.currentTimeMillis().toString()
         var hash = hashMapOf(
             "userId" to firebaseAuth.uid.toString(),
@@ -120,9 +148,9 @@ class ComplainActivity : AppCompatActivity() {
             "address" to address.text.toString().trim().lowercase(),
         )
 
-        complainRef.document(id).set(hash).addOnCompleteListener{
-            Toast.makeText(baseContext,"done",Toast.LENGTH_SHORT).show()
-            startActivity(Intent(baseContext,MainActivity::class.java))
+        complainRef.document(id).set(hash).addOnCompleteListener {
+            Toast.makeText(baseContext, "done", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(baseContext, MainActivity::class.java))
             finish()
             progressBar.visibility = View.GONE
         }

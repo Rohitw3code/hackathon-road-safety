@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Road Safety</string>
     <string name="default_web_client_ids">803828876324-g305btdhp269anvldqu5rc4kdeuvb4la.apps.googleusercontent.com</string>
+    <string name="about_hindi">यदि आप सड़क परिवहन प्राधिकरण से कोई शिकायत करना चाहते हैं तो आप सही जगह पर हैं</string>
+    <string name="about_english">If you want to make any complain to road transport authority you are at the right place </string>
 </resources>
