@@ -15,10 +15,10 @@
         android:theme="@style/Theme.Road_safety"
         tools:targetApi="31">
         <activity
-            android:name=".Help"
+            android:name=".Help_Activity"
             android:exported="false" />
         <activity
-            android:name=".ShakeDetector"
+            android:name=".ShakeDetector_Activity"
             android:exported="false" />
         <activity
             android:name=".Alert_yesOrNo"

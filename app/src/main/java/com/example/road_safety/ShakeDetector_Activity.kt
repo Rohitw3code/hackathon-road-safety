@@ -10,7 +10,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 import kotlin.math.sqrt
-class ShakeDetector : AppCompatActivity() {
+class ShakeDetector_Activity : AppCompatActivity() {
     private var sensorManager: SensorManager? = null
     private var acceleration = 0f
     private var currentAcceleration = 0f
