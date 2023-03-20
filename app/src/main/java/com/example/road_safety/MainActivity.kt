@@ -1,11 +1,16 @@
 package com.example.road_safety
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
+import android.widget.ImageView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.ktx.initialize
 
 class MainActivity : AppCompatActivity() {
     private lateinit var recordBtn:Button
@@ -13,6 +18,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var helpBtn:Button
     private val pickImage = 100
     private var imageUri: Uri? = null
+    private lateinit var logout:ImageView
+    private lateinit var firebaseAuth: FirebaseAuth
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,10 +28,19 @@ class MainActivity : AppCompatActivity() {
         recordBtn = findViewById(R.id.record) as Button
         reportBtn = findViewById(R.id.report) as Button
         helpBtn = findViewById(R.id.needHelp) as Button
+        logout = findViewById(R.id.logout_btn)
+
+        firebaseAuth = FirebaseAuth.getInstance()
         // set on-click listener
         recordBtn.setOnClickListener {
             val intent = Intent(this, ShakeDetector::class.java)
             startActivity(intent)
+        }
+
+        logout.setOnClickListener{v->
+            firebaseAuth.signOut()
+            startActivity(Intent(baseContext,AuthActivity::class.java))
+            finish()
         }
 
         reportBtn.setOnClickListener {
