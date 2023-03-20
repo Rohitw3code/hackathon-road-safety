@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.snackbar.Snackbar
 
 class AccidentAlert : AppCompatActivity() {
     private lateinit var noBtn: Button
@@ -47,6 +48,7 @@ class AccidentAlert : AppCompatActivity() {
                 counter.textSize = 30F
                 lottiAmbulance.visibility = View.VISIBLE
                 alertLinear.visibility = View.GONE
+                Snackbar.make(counter, "Message is sent to nearest ambulance for your help", Snackbar.LENGTH_LONG).show()
             }
         }.start()
 

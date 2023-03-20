@@ -7,6 +7,7 @@
     tools:context=".ComplainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_complain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <androidx.appcompat.widget.Toolbar
@@ -20,13 +21,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/app_bar_complain"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/image_complain"
             android:layout_width="match_parent"
             android:layout_height="200sp"
-            android:layout_marginVertical="50sp" />
+            android:layout_margin="30sp"/>
+        <ProgressBar
+            android:id="@+id/progress_bar_complain"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_marginHorizontal="30sp"
+            android:indeterminate="true"/>
 
         <EditText
             android:id="@+id/desc_complain"
@@ -34,35 +44,55 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="50dp"
             android:textAlignment="center"
+            android:padding="20sp"
+            android:background="@drawable/round"
             android:hint="Enter your complain  briefly"
-            android:layout_marginVertical="50sp" />
+            android:layout_marginVertical="30sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/state_complain"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:hint="State"/>
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/region_complain"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:layout_weight="1"
-                android:hint="Region"/>
+                <EditText
+                    android:id="@+id/state_complain"
+                    android:layout_width="wrap_content"
+                    android:background="@drawable/round"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:padding="10sp"
+                    android:layout_marginHorizontal="10sp"
+                    android:layout_weight="1"
+                    android:hint="State"/>
+
+                <EditText
+                    android:id="@+id/region_complain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round"
+                    android:padding="10sp"
+                    android:textAlignment="center"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="10sp"
+                    android:hint="Region"/>
+
+            </LinearLayout>
+
 
             <EditText
                 android:id="@+id/address_complain"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:padding="10sp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:layout_margin="10sp"
+                android:layout_gravity="center"
+                android:background="@drawable/round"
                 android:layout_weight="2"
                 android:hint="Your address"/>
         </LinearLayout>
@@ -73,6 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginVertical="50sp"
+            android:background="@drawable/buttons"
             android:text="Submit" />
 
     </LinearLayout>
