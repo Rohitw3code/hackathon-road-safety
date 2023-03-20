@@ -103,7 +103,11 @@ class ComplainActivity : AppCompatActivity() {
             vid.start()
         }
     }
-
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        finish()
+        return true
+    }
 
     @SuppressLint("Range")
     fun getFileNameFromUri(context: Context, uri: Uri): String {

@@ -112,7 +112,10 @@ class AuthActivity : AppCompatActivity() {
                                     "lastActive" to System.currentTimeMillis(),
                                     "token" to "",
                                     "versionName" to BuildConfig.VERSION_NAME,
-                                    "versionCode" to BuildConfig.VERSION_CODE
+                                    "versionCode" to BuildConfig.VERSION_CODE,
+                                    "address" to "",
+                                    "bloodGroup" to "",
+                                    "aadhaar" to ""
                                 )
 
                                 userRef.document(authId)

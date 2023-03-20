@@ -12,7 +12,7 @@
                 <shape android:shape="rectangle">
                     <corners android:radius="8dp" />
                     <solid android:color="#6ab5ef" />
-                </shape>
+                </shape>hrtestwin@gmail.com
             </item>
         </ripple>
     </item>
