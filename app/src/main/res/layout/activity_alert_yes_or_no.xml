@@ -11,19 +11,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Do you need help ?"
+            android:textSize="100px"
+            android:layout_margin="25dp"
+            android:textColor="@color/texts"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <Button
-            android:layout_width="350px"
-            android:layout_height="wrap_content"
-            android:layout_margin="20px"
-            android:background="@drawable/buttons"
-            android:text="yes"/>
-        <Button
-            android:layout_width="350px"
-            android:layout_height="wrap_content"
-            android:layout_margin="20px"
-            android:background="@drawable/buttons"
-            android:text="no"/>
+            <Button
+                android:layout_width="350px"
+                android:id="@+id/yesbtn"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:background="@drawable/buttons"
+                android:text="yes"/>
+            <Button
+                android:layout_width="350px"
+                android:id="@+id/nobtn"
+                android:layout_height="wrap_content"
+                android:layout_margin="20px"
+                android:background="@drawable/buttons"
+                android:text="no"/>
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

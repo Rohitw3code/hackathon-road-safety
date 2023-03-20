@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".Help">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:padding="40px"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/police"
+                android:layout_width="match_parent"
+                android:padding="30px"
+                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/texts"
+                android:background="@drawable/buttons"
+                android:text="police" />
+            <Button
+                android:id="@+id/ambulance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/buttons"
+                android:layout_margin="4dp"
+                android:padding="30px"
+                android:text=" ambulance"
+                android:textColor="@color/texts" />
+
+            <Button
+                android:id="@+id/fire_brigade"
+                android:layout_margin="4dp"
+                android:layout_width="match_parent"
+                android:padding="30px"
+                android:layout_height="wrap_content"
+                android:textColor="@color/texts"
+                android:background="@drawable/buttons"
+                android:text="fire brigade" />
+
+            <Button
+                android:id="@+id/emergency"
+                android:layout_margin="4dp"
+                android:layout_width="match_parent"
+                android:padding="30px"
+                android:layout_height="wrap_content"
+                android:textColor="@color/texts"
+                android:background="@drawable/buttons"
+                android:text="emergency " />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

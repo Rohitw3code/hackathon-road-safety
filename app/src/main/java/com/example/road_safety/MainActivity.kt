@@ -10,6 +10,7 @@ import android.widget.Button
 class MainActivity : AppCompatActivity() {
     private lateinit var recordBtn:Button
     private lateinit var reportBtn:Button
+    private lateinit var helpBtn:Button
     private val pickImage = 100
     private var imageUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         recordBtn = findViewById(R.id.record) as Button
         reportBtn = findViewById(R.id.report) as Button
+        helpBtn = findViewById(R.id.needHelp) as Button
         // set on-click listener
         recordBtn.setOnClickListener {
             val intent = Intent(this, ShakeDetector::class.java)
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(gallery, pickImage)
 //            ImagePicker.with(this)
 //                .cameraOnly().crop().maxResultSize(400,400).start()
+        }
+        helpBtn.setOnClickListener {
+            val intent = Intent(this, Help::class.java)
+            startActivity(intent)
         }
     }
 
