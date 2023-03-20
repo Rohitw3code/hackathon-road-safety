@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var about:TextView
     private val pickImage = 100
     private var imageUri: Uri? = null
-    private lateinit var logout:ImageView
     private lateinit var firebaseAuth: FirebaseAuth
     private  var aboutClick:Boolean = false
 
@@ -58,19 +57,12 @@ class MainActivity : AppCompatActivity() {
         recordBtn = findViewById(R.id.record) as Button
         reportBtn = findViewById(R.id.report) as Button
         helpBtn = findViewById(R.id.needHelp) as Button
-        logout = findViewById(R.id.logout_btn)
 
         firebaseAuth = FirebaseAuth.getInstance()
         // set on-click listener
         recordBtn.setOnClickListener {
             val intent = Intent(this, ShakeDetectorActivity::class.java)
             startActivity(intent)
-        }
-
-        logout.setOnClickListener{v->
-            firebaseAuth.signOut()
-            startActivity(Intent(baseContext,AuthActivity::class.java))
-            finish()
         }
 
         reportBtn.setOnClickListener {
