@@ -1,20 +1,44 @@
 package com.example.road_safety
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var recordBtn:Button
+    private lateinit var reportBtn:Button
+    private val pickImage = 100
+    private var imageUri: Uri? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val btn_click_me = findViewById(R.id.record) as Button
+        recordBtn = findViewById(R.id.record) as Button
+        reportBtn = findViewById(R.id.report) as Button
         // set on-click listener
-        btn_click_me.setOnClickListener {
+        recordBtn.setOnClickListener {
             val intent = Intent(this, ShakeDetector::class.java)
             startActivity(intent)
+        }
+
+        reportBtn.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, pickImage)
+//            ImagePicker.with(this)
+//                .cameraOnly().crop().maxResultSize(400,400).start()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && requestCode == pickImage) {
+            imageUri = data?.data
+            val cintent = Intent(baseContext,ComplainActivity::class.java)
+            cintent.putExtra("uri",imageUri.toString())
+            startActivity(cintent)
         }
     }
 }
