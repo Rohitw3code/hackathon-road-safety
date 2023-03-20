@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".aboutActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/main_toolbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:titleTextColor="@color/white"
+                android:layout_weight="1"
+                app:title="Profile"/>
+            <ImageView
+                android:id="@+id/logout_btn"
+                android:layout_width="25sp"
+                android:layout_height="53sp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="10sp"
+                android:src="@drawable/baseline_logout_24"/>
+        </LinearLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="30px"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/user"/>
+
+        <EditText
+            android:id="@+id/name_space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="7dp"
+            android:inputType="textPersonName"
+            android:hint="Name" />
+        <EditText
+            android:id="@+id/aadhar_id_space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="7dp"
+            android:inputType="textPersonName"
+            android:hint="Aadhar id" />
+        <EditText
+            android:id="@+id/blood_group_space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="7dp"
+            android:inputType="textPersonName"
+            android:hint="Blood group" />
+        <EditText
+            android:id="@+id/Gender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_margin="7dp"
+            android:inputType="textPersonName"
+            android:hint="Gender" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Submit_button"
+            android:layout_margin="7dp"
+            android:text="Submit"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

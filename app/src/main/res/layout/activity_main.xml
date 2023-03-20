@@ -23,12 +23,12 @@
                 android:layout_weight="1"
                 app:title="Road Safety"/>
             <ImageView
-                android:id="@+id/logout_btn"
-                android:layout_width="25sp"
-                android:layout_height="53sp"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_marginHorizontal="10sp"
-                android:src="@drawable/baseline_logout_24"/>
+                android:src="@drawable/user"/>
+
 
         </LinearLayout>
 
@@ -68,7 +68,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="40px">
+                android:padding="20px">
 
 
                 <Button
