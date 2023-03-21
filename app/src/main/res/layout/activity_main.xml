@@ -89,6 +89,15 @@
                 android:orientation="vertical"
                 android:padding="20px">
 
+                <Button
+                    android:id="@+id/blackspot"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/buttons"
+                    android:padding="30px"
+                    android:text="Black spot"
+                    android:textColor="@color/texts" />
 
                 <Button
                     android:id="@+id/report"

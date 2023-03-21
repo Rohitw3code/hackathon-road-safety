@@ -148,7 +148,7 @@ class ComplainActivity : AppCompatActivity() {
 
     //    com.google.firebase.storage.storageexception : object does not exist at location
     fun submitComplain(url: String) {
-        val id = System.currentTimeMillis().toString()
+        val id = System.currentTimeMillis()
         var hash = hashMapOf(
             "userId" to firebaseAuth.uid.toString(),
             "time" to id,
@@ -159,7 +159,7 @@ class ComplainActivity : AppCompatActivity() {
             "address" to address.text.toString().trim().lowercase(),
         )
 
-        complainRef.document(id).set(hash).addOnCompleteListener {
+        complainRef.document(id.toString()).set(hash).addOnCompleteListener {
             Toast.makeText(baseContext, "Complaint registered", Toast.LENGTH_SHORT).show()
             startActivity(Intent(baseContext, MainActivity::class.java))
             finish()
