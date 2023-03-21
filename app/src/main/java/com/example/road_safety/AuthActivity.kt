@@ -29,12 +29,14 @@ class AuthActivity : AppCompatActivity() {
     var userRef = db.collection("users")
     var adminRef = db.collection("admin")
     private lateinit var authBtn:LottieAnimationView
+    private lateinit var authBtn1:TextView
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
         authBtn = findViewById(R.id.auth_btn)
+        authBtn1 = findViewById(R.id.auth_btn_2)
 
         FirebaseApp.initializeApp(this)
 
@@ -58,6 +60,9 @@ class AuthActivity : AppCompatActivity() {
             finish()
         }
         authBtn.setOnClickListener { view: View? ->
+            signInGoogle()
+        }
+        authBtn1.setOnClickListener { view: View? ->
             signInGoogle()
         }
     }

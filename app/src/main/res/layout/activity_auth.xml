@@ -52,6 +52,14 @@
             app:lottie_autoPlay="true"
             app:lottie_rawRes="@raw/google" />
 
+        <TextView
+            android:id="@+id/auth_btn_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboo"
+            android:text="@string/login"/>
+
 
     </LinearLayout>
 

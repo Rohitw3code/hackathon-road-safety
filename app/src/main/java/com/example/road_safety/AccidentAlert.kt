@@ -33,8 +33,11 @@ class AccidentAlert : AppCompatActivity() {
             System.out.close()
         }
         yesBtn.setOnClickListener{
-            finish()
-            System.out.close()
+            counter.text = "Message is sent to nearest ambulance for your help"
+            counter.textSize = 30F
+            lottiAmbulance.visibility = View.VISIBLE
+            alertLinear.visibility = View.GONE
+            Snackbar.make(counter, "Message is sent to nearest ambulance for your help", Snackbar.LENGTH_LONG).show()
         }
 
         object : CountDownTimer(10000, 1000) {

@@ -55,7 +55,8 @@ class ProfileActivity : AppCompatActivity() {
 
         logout.setOnClickListener{v->
             firebaseAuth.signOut()
-            startActivity(Intent(baseContext,AuthActivity::class.java))
+            val intent = Intent(baseContext,AuthActivity::class.java)
+            startActivity(intent)
             finish()
         }
 
